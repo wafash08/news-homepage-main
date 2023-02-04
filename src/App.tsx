@@ -1,17 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-function MenuButton() {
+function MenuButton({
+  showMobileMenu,
+  handleClick,
+}: {
+  showMobileMenu: boolean;
+  handleClick: (arg: boolean) => void;
+}) {
   return (
     <button
       className="w-12 h-12 flex items-center justify-center"
-      // onClick={() => setShowMobileMenu(!showMobileMenu)}
+      onClick={() => handleClick(!showMobileMenu)}
     >
-      {/* {showMobileMenu ? (
-            <img src="/images/icon-menu-close.svg" alt="Close Menu" />
-          ) : (
-            <img src="/images/icon-menu.svg" alt="Open Menu" />
-            )} */}
-      <img src="/images/icon-menu.svg" alt="Open Menu" />
+      {showMobileMenu ? (
+        <img src="/images/icon-menu-close.svg" alt="Close Menu" />
+      ) : (
+        <img src="/images/icon-menu.svg" alt="Open Menu" />
+      )}
       <span className="sr-only">Menu Button</span>
     </button>
   );
@@ -36,9 +41,19 @@ function MenuItem({
   );
 }
 
-function MenuMobile() {
+function MenuMobile({ showMobileMenu }: { showMobileMenu: boolean }) {
+  let translateMobileMenu = "";
+
+  if (showMobileMenu) {
+    translateMobileMenu = "translate-x-0 opacity-100";
+  } else {
+    translateMobileMenu = "translate-x-full opacity-0";
+  }
+
   return (
-    <div className="h-full w-full fixed inset-0 bg-neutral-dark-grayish-blue bg-opacity-40 flex justify-end">
+    <div
+      className={`h-full w-full fixed inset-0 bg-neutral-dark-grayish-blue bg-opacity-40 flex justify-end transition ${translateMobileMenu}`}
+    >
       <div className="w-4/5 bg-neutral-off-white pt-40">
         <nav className="">
           <ul className="flex flex-col gap-5">
@@ -55,13 +70,17 @@ function MenuMobile() {
 }
 
 function App() {
-  useEffect(() => {
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+
+  if (showMobileMenu) {
     document.body.style.position = "relative";
-  }, []);
+  } else {
+    document.body.style.position = "static";
+  }
 
   return (
     <>
-      <header className="mt-10 border-debug mb-10 lg:mt-20">
+      <header className="mt-10 mb-10 lg:mt-20">
         <div className="layout flex justify-between items-center">
           <div>
             <a href="/">
@@ -72,7 +91,7 @@ function App() {
 
           <div className="hidden md:flex">
             <nav>
-              <ul className="flex text-neutral-dark-grayish-blue gap-8 border-debug">
+              <ul className="flex text-neutral-dark-grayish-blue gap-8">
                 <li>
                   <a href="/">Home</a>
                 </li>
@@ -94,11 +113,16 @@ function App() {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden z-50 ml-auto">
-            <MenuButton />
+            <MenuButton
+              showMobileMenu={showMobileMenu}
+              handleClick={setShowMobileMenu}
+            />
           </div>
 
           {/* Mobile Menu */}
-          <div className="md:hidden">{/* <MenuMobile /> */}</div>
+          <div className="md:hidden">
+            <MenuMobile showMobileMenu={showMobileMenu} />
+          </div>
         </div>
       </header>
     </>

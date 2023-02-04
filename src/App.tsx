@@ -2,15 +2,15 @@ import React, { useState } from "react";
 
 function MenuButton({
   showMobileMenu,
-  handleClick,
+  handleShowMobileMenu,
 }: {
   showMobileMenu: boolean;
-  handleClick: (arg: boolean) => void;
+  handleShowMobileMenu: (arg: boolean) => void;
 }) {
   return (
     <button
       className="w-12 h-12 flex items-center justify-center"
-      onClick={() => handleClick(!showMobileMenu)}
+      onClick={() => handleShowMobileMenu(!showMobileMenu)}
     >
       {showMobileMenu ? (
         <img
@@ -74,7 +74,13 @@ function MenuItem({
   );
 }
 
-function MenuMobile({ showMobileMenu }: { showMobileMenu: boolean }) {
+function MenuMobile({
+  showMobileMenu,
+  handleShowMobileMenu,
+}: {
+  showMobileMenu: boolean;
+  handleShowMobileMenu: (arg: boolean) => void;
+}) {
   let translateMobileMenu = "";
 
   if (showMobileMenu) {
@@ -86,6 +92,10 @@ function MenuMobile({ showMobileMenu }: { showMobileMenu: boolean }) {
   return (
     <div
       className={`h-full w-full fixed inset-0 bg-neutral-dark-grayish-blue bg-opacity-40 flex justify-end transition ${translateMobileMenu}`}
+      onClick={e => {
+        e.stopPropagation();
+        handleShowMobileMenu(!showMobileMenu);
+      }}
     >
       <div className="w-4/5 bg-neutral-off-white pt-40">
         <nav className="">
@@ -158,13 +168,16 @@ function App() {
           <div className="md:hidden z-50 ml-auto">
             <MenuButton
               showMobileMenu={showMobileMenu}
-              handleClick={setShowMobileMenu}
+              handleShowMobileMenu={setShowMobileMenu}
             />
           </div>
 
           {/* Mobile Menu */}
           <div className="md:hidden">
-            <MenuMobile showMobileMenu={showMobileMenu} />
+            <MenuMobile
+              showMobileMenu={showMobileMenu}
+              handleShowMobileMenu={setShowMobileMenu}
+            />
           </div>
         </div>
       </header>

@@ -28,6 +28,14 @@ body {
   background-color: #fffdfa;
 }
 
+.inter-ex-bold {
+  font-family: "Inter Extra Bold";
+}
+
+.inter-bold {
+  font-family: "Inter Bold";
+}
+
 .layout {
   max-width: 1200px;
   margin-left: auto;

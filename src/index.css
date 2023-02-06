@@ -6,16 +6,19 @@
   @font-face {
     font-family: "Inter";
     src: url("./assets/fonts/static/Inter-Regular.ttf") format("truetype");
+    font-display: swap;
   }
 
   @font-face {
     font-family: "Inter Bold";
     src: url("./assets/fonts/static/Inter-Bold.ttf") format("truetype");
+    font-display: swap;
   }
 
   @font-face {
     font-family: "Inter Extra Bold";
     src: url("./assets/fonts/static/Inter-ExtraBold.ttf") format("truetype");
+    font-display: swap;
   }
 
   html {

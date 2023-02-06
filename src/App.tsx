@@ -145,7 +145,12 @@ function App() {
         <div className="layout flex justify-between items-center">
           <div>
             <a href="/">
-              <img src="/images/logo.svg" alt="News Logo" />
+              <img
+                src="/images/logo.svg"
+                alt="News Logo"
+                width={65}
+                height={40}
+              />
               <span className="sr-only">Logo</span>
             </a>
           </div>
@@ -238,9 +243,9 @@ function App() {
             <ul className="flex flex-col justify-around h-full">
               <li className="border-b border-neutral-grayish-blue">
                 <a href="#" className="flex flex-col gap-4 py-6">
-                  <h4 className="inter-bold text-2xl text-neutral-off-white">
+                  <h3 className="inter-bold text-2xl text-neutral-off-white">
                     Hydrogen VS Electric Car
-                  </h4>
+                  </h3>
                   <p className="text-neutral-grayish-blue">
                     Will hydrogen-fueled cars ever catch up to EVs?
                   </p>
@@ -248,9 +253,9 @@ function App() {
               </li>
               <li className="border-b border-neutral-grayish-blue">
                 <a href="#" className="flex flex-col gap-4 py-6">
-                  <h4 className="inter-bold text-2xl text-neutral-off-white">
+                  <h3 className="inter-bold text-2xl text-neutral-off-white">
                     The Downsides of AI Artistry
-                  </h4>
+                  </h3>
                   <p className="text-neutral-grayish-blue">
                     What are the possible adverse effects of on-demand AI image
                     generation?
@@ -259,9 +264,9 @@ function App() {
               </li>
               <li>
                 <a href="#" className="flex flex-col gap-4 py-6">
-                  <h4 className="inter-bold text-2xl text-neutral-off-white">
+                  <h3 className="inter-bold text-2xl text-neutral-off-white">
                     Is VC Funding Drying Up?
-                  </h4>
+                  </h3>
                   <p className="text-neutral-grayish-blue">
                     Private funding by VC firms is down 50% YOY. We take a look
                     at what that means.
